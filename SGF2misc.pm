@@ -9,7 +9,7 @@ use Data::Dumper;
 use Compress::Zlib;
 use CGI qw(escapeHTML);
 
-our $VERSION = "0.9.7.i"; # .i == 'Igs Is Irritating'
+our $VERSION = "0.9780";
 
 1;
 
