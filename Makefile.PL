@@ -6,7 +6,7 @@ WriteMakefile(
     'VERSION_FROM' => 'SGF2misc.pm',
     'PREREQ_PM'    => {
 
-        'Parse::Lex'     => 0, 
+        'Parse::Lex'     => 2.19, # I don't know when the 2.15 test bugs were removed, 2.19 is latest
         'Data::Dumper'   => 0, 
         'Compress::Zlib' => 0,
 
