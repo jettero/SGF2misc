@@ -1,6 +1,4 @@
 #!/usr/bin/perl
-# $Id: sgfimgmkr,v 1.47 2006/04/14 12:51:08 jettero Exp $
-# vi:tw=0:
 
 use strict;
 use Fcntl qw(:flock);
@@ -28,11 +26,12 @@ use Getopt::Std;
 
 my $sgf = new Games::Go::SGF2misc;
 
-getopts("pqi:b:P:Kj1");
+getopts("pqi:b:P:Kj1c:");
 
-our ($opt_q, $opt_i, $opt_b, $opt_p, $opt_P, $opt_K, $opt_j, $opt_1); 
+our ($opt_q, $opt_i, $opt_b, $opt_p, $opt_P, $opt_K, $opt_j, $opt_1, $opt_c); 
     # -b location: location of the board htmls
     # -i location: location of the image graphics
+    # -c location: location of the stylesheet (href format)
     # -q quiet
     # -p preprocess pilotGOne files...
     # -P dump povray position commands
@@ -339,7 +338,7 @@ function SN$fn(newnode) {
 
             } # end regular non -j node changer
 
-            print OUT q(<link rel="stylesheet" type="text/css" href="http://voltar.org/kgc/kgc.css">) if $opt_K;
+            print OUT qq(<link rel="stylesheet" type="text/css" href="$opt_c">) if $opt_K;
             print OUT "<span class='sgf' id='$fn'>\n";
             while(<IN>) {
                 print OUT $_;
