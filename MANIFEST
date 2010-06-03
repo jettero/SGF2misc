@@ -6,7 +6,8 @@ Makefile.PL
 README
 SGF2misc.pm
 SGF2misc/GD.pm
-examples/sgf2cgifb
+contrib/sgfimgmkr
+contrib/sgf2cgifb
 img/b.gif
 img/b1.gif
 img/b10.gif
