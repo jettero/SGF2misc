@@ -1,0 +1,19 @@
+# http://module-build.sourceforge.net/META-spec.html
+#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
+name:         Games-Go-SGF2misc
+version:      0.9.7.i
+version_from: SGF2misc.pm
+installdirs:  site
+requires:
+    CGI:                           0
+    Compress::Zlib:                0
+    Data::Dumper:                  0
+    Devel::Size:                   0
+    GD:                            2.12
+    Number::Format:                0
+    Parse::Lex:                    0
+    Time::HiRes:                   0
+    Unix::Process:                 0
+
+distribution_type: module
+generated_by: ExtUtils::MakeMaker version 6.17

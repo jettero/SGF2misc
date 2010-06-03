@@ -1,0 +1,10 @@
+2006-05-12 07:28: 
+    To let us parse IGS SGFs out of the box, I made CoPyright[blather blather] equiv to FF[4]... *sigh*
+
+2006-03-09 13:58: 
+    I found a bug in the ref copy routine -- that omits comments from nodes returned by as_perl()!
+
+2005-01-19 16:20ish: 
+    The Many Faces of Go seems to generate SGFs that SGF2misc can't handle!
+    I'm working on it.  MFoG uses [tt] pass format.  Arguably, this is wrong, 
+    but according to the specs it's legal in FF[4].   So added.
