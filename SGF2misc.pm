@@ -1,6 +1,3 @@
-# vi:fdm=marker fdl=0
-# $Id: SGF2misc.pm,v 1.12 2006/05/12 13:13:41 jettero Exp $ 
-
 package Games::Go::SGF2misc;
 
 use strict;
