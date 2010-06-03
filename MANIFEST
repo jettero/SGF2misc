@@ -5,6 +5,7 @@ META.yml
 Makefile.PL
 README
 SGF2misc.pm
+SGF2misc.pod
 SGF2misc/GD.pm
 contrib/sgfimgmkr
 contrib/sgf2cgifb
