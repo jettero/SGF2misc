@@ -1,8 +1,6 @@
 # Games::Go::SGF2misc::GD
 #
 # Author: Orien Vandenbergh <orien@icecode.com>
-# $Id: GD.pm,v 1.1 2005/01/19 21:06:42 jettero Exp $
-# vi: fdm=marker fdl=0
 
 package Games::Go::SGF2misc::GD;
 
@@ -354,77 +352,76 @@ internal intellegence about how to process an SGF file, this is merely
 designed to be used in conjunction with an SGF reader such as
 L<Games::Go::SGF2misc> or L<Games::Go::SGF>.
 
-B<$image = Games::Go::SGF2misc::GD->new(['imagesize' => 64],['boardsize' => 19],['antialias' => 1])>
+    $image = Games::Go::SGF2misc::GD->new(['imagesize' => 64],['boardsize' => 19],['antialias' => 1])
 
-    To create a new image, call the new() function.  It's three
-    arguments are optional, but if specified will override the defaults.
+To create a new image, call the new() function.  It's three
+arguments are optional, but if specified will override the defaults.
 
-    B<imagesize> is the width and height of the image created and
-    defaults to 64 if not specified.  B<boardsize> is the number of
-    lines horizontally and vertically across the board, with a default
-    of 19.  B<antialias> is a boolean value which controls whether the
-    resulting image is fed through a slight blur filter to remove
-    jaggies.  B<antialias> defaults to on, but can be overly slow on
-    very large renders.
+B<imagesize> is the width and height of the image created and defaults to 64 if
+not specified.  B<boardsize> is the number of lines horizontally and vertically
+across the board, with a default of 19.  B<antialias> is a boolean value which
+controls whether the resulting image is fed through a slight blur filter to
+remove jaggies.  B<antialias> defaults to on, but can be overly slow on very
+large renders.
 
-B<$image->gobanColor($red,$green,$blue)>
-B<$image->whiteColor($red,$green,$blue)>
-B<$image->blackColor($red,$green,$blue)>
+    $image->gobanColor($red,$green,$blue)
+    $image->whiteColor($red,$green,$blue)
+    $image->blackColor($red,$green,$blue)
 
-    These functions set the colors used for rendering the game.
-    B<$red>, B<$green>, and B<$blue> are integers between 0 and 255;
+These functions set the colors used for rendering the game.
+B<$red>, B<$green>, and B<$blue> are integers between 0 and 255;
 
-B<$image->drawGoban()>
+    $image->drawGoban()
 
-    This command does all the initial setup of rendering the Goban.  It
-    sets the background color, and draws lines and star points.  If you
-    don't call this before any of the other drawing functions, you can
-    expect your output to be a little weird.
+This command does all the initial setup of rendering the Goban.  It sets the
+background color, and draws lines and star points.  If you don't call this
+before any of the other drawing functions, you can expect your output to be a
+little weird.
 
-B<$image->placeStone($color,$position)>
+    $image->placeStone($color,$position)
 
-    This command puts a stone into the image at the position specified.
-    B<$color> is one of /[BbWw]/ and controls whether a black or white
-    stone is added. B<$position> is either an array of x,y coordinates
-    with 0,0 in the upper left corner, or a string of letters
-    representing coordinates at which the stone should be placed, in
-    standard SGF format. 'aa' is the upper left corner, and 'ss' is the
-    lower right (of a 19x19 game).
+This command puts a stone into the image at the position specified.
+B<$color> is one of /[BbWw]/ and controls whether a black or white
+stone is added. B<$position> is either an array of x,y coordinates
+with 0,0 in the upper left corner, or a string of letters
+representing coordinates at which the stone should be placed, in
+standard SGF format. 'aa' is the upper left corner, and 'ss' is the
+lower right (of a 19x19 game).
 
-B<$image->addCircle($position,[$onStone])>
-B<$image->addSquare($position,[$onStone])>
-B<$image->addTriangle($position,[$onStone])>
+    $image->addCircle($position,[$onStone])
+    $image->addSquare($position,[$onStone])
+    $image->addTriangle($position,[$onStone])
 
-    This command adds either a circle, square or triange around the
-    coordinates specified by B<$position>. Be default GD::SGF renders
-    the shape in black.  If you want to render the shape on top of a
-    stone, supply a true value for B<$onStone>, to tell the module to
-    render the shape in an inverse color from what is below it.
+This command adds either a circle, square or triange around the
+coordinates specified by B<$position>. Be default GD::SGF renders
+the shape in black.  If you want to render the shape on top of a
+stone, supply a true value for B<$onStone>, to tell the module to
+render the shape in an inverse color from what is below it.
 
-B<$image->addLetter($position,$letter,[$onStone])>
+    $image->addLetter($position,$letter,[$onStone])
 
-    This command renders a letter above the coordinates specified by
-    B<$position>.  The processing performed is very similar to the other
-    add* functions defined above, with one major difference.  If
-    B<$onStone> does not evaluate to true, then the area under the
-    letter will also be cleared (to removed the intersection of the two
-    lines) before rendering.
+This command renders a letter above the coordinates specified by
+B<$position>.  The processing performed is very similar to the other
+add* functions defined above, with one major difference.  If
+B<$onStone> does not evaluate to true, then the area under the
+letter will also be cleared (to removed the intersection of the two
+lines) before rendering.
 
-B<$image->save($filename)>
+    $image->save($filename)
 
-    Saves the in memory image into the filename specified in
-    B<$filename>.  The module will attempt to guess the format of the
-    output image based upon the extension of the filename.  Supported
-    file formats are [ PNG, JPEG, GD2, GD ].  If the module is unable to
-    determine the desired output format, the image will be output as a
-    PNG.
+Saves the in memory image into the filename specified in
+B<$filename>.  The module will attempt to guess the format of the
+output image based upon the extension of the filename.  Supported
+file formats are [ PNG, JPEG, GD2, GD ].  If the module is unable to
+determine the desired output format, the image will be output as a
+PNG.
 
-B<$png = $image->dump($format)>
+    $png = $image->dump($format)
 
-    Converts the in memory image into an image of the format specified
-    in B<$format>.  If no format is specified the module defaults to
-    PNG.  The image is then returned to the calling function for
-    storage.
+Converts the in memory image into an image of the format specified
+in B<$format>.  If no format is specified the module defaults to
+PNG.  The image is then returned to the calling function for
+storage.
 
 =head1 TODO
 
@@ -439,7 +436,7 @@ hoshi points for oddball goban sizes.
 
 =head1 AUTHOR
 
-Orien Vandenbergh C<orien@icecode.com>
+Orien Vandenbergh C<< <orien@icecode.com> >>
 
 =head1 SEE ALSO
 
