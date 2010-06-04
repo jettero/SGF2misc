@@ -9,7 +9,7 @@ use Data::Dumper;
 use Compress::Zlib;
 use CGI qw(escapeHTML);
 
-our $VERSION = "0.9780";
+our $VERSION = 0.9781;
 
 1;
 
@@ -73,7 +73,7 @@ sub parse_internal {
     $this->_time("parse");
 
     my @rules = (
-        VALUE  => '\[(?ms:.*?(?<!\x5c))\]',
+        VALUE  => '(?:\[\]|\[(?s:.*?[^\x5c])\])',
 
         BCOL   => '\(',                   # begin collection
         ECOL   => '\)',                   # end collection
@@ -88,7 +88,7 @@ sub parse_internal {
 
     Parse::Lex->trace if $ENV{DEBUG} > 30;
 
-    my $lex = new Parse::Lex(@rules); $^W = 0; no warnings;
+    my $lex = Parse::Lex->new(@rules); $^W = 0; no warnings;
        $lex->from($file);
 
     $this->{parse} = { p => undef, n => [], c=>[] }; # p => parent, n => nodes, c => child Collections

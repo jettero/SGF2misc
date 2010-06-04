@@ -1,3 +1,11 @@
+0.9781: Fri Jun 04 2010
+   - hrm, there are serious critical flaws in Parse::Lex.  I wish this module
+     wasn't married to it.  Parse::Template::ppregexp intentionally changes !
+     to \! before it's ineserted in the template.  perl5.8.8 doesn't care at
+     all if (?<!blarg) is actually spelled (?<\!blarg) -- although, perhaps it
+     should -- but perl5.10 and up *does* care about that.
+   - I found a way to do blarg(?<!blarg) without a bang -- kindof.
+
 0.9780: Thu Jun 03 2010
    - I hope CPAN thinkgs 0.9780>0.9.7.i
 
